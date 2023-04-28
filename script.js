@@ -13,8 +13,9 @@ function playRound(playerSelection, computerSelection) {
     /* Check for win condition, if tie call function again until win/lose */
     if (playerSelection === computerSelection) {
         console.log("You Tie! Go again");
-        playerSelection = prompt("Please enter a choice (\"Rock\" \"Paper\" \"Scissors\"): ");
-        return playRound(playerSelection, getComputerChoice());
+        //playerSelection = prompt("Please enter a choice (\"Rock\" \"Paper\" \"Scissors\"): ");
+        //return playRound(playerSelection, getComputerChoice());
+        return;
     } else if (playerSelection === 'rock') {
         if (computerSelection === 'paper') {
             console.log("You Lose! Paper beats Rock");
@@ -52,23 +53,42 @@ function game() {
     let i = 0;
     console.log("You are now beginning a game of Rock Paper Scissors!");
     console.log("The winner is whoever wins the most rounds out of 5");
-    while (i < 5) {
+    //while (i < 5) {
         
-        console.log("Starting round " + (i + 1));
-        const playerSelection = prompt("Please enter a choice (\"Rock\" \"Paper\" \"Scissors\"): ");
-        if (playRound(playerSelection, getComputerChoice())) {
-            score++;
-        }
-        i++;
-        console.log(score);
-    }
+    console.log("Starting round " + (i + 1));
+    //const playerSelection = prompt("Please enter a choice (\"Rock\" \"Paper\" \"Scissors\"): ");
+    const rock = document.querySelector('#rock');
+    const paper = document.querySelector('#paper');
+    const scissors = document.querySelector('#scissors');
 
+    rock.addEventListener('click', () => {
+        playRound('rock', getComputerChoice());
+    });
+
+    paper.addEventListener('click', () => {
+        playRound('paper', getComputerChoice());
+    });
+
+    scissors.addEventListener('click', () => {
+        playRound('scissors', getComputerChoice());
+    });
+
+    /*
+    if (playRound(playerSelection, getComputerChoice())) {
+        score++;
+    }
+    i++;*/
+    console.log(score);
+    //}
+
+    /*
     console.log("You beat the computer " + score + " out of 5 rounds");
     if (score >= 3) {    
         console.log("You Win The Game!");
     } else {
         console.log("You Lose The Game!");
     }
+    */
 }
 
 game();
